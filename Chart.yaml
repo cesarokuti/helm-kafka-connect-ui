@@ -1,5 +1,5 @@
 name: "kafka-connect-ui"
-version: "0.1.0"
+version: "0.2.0"
 description: "Helm for Landoop/kafka-connect-ui (https://github.com/Landoop/kafka-connect-ui) "
 keywords:
   - kafka
@@ -15,4 +15,3 @@ engine: gotpl
 apiVersion: v1
 appVersion: "0.9.7"
 trillerVersion: ">2.13.1"
-
