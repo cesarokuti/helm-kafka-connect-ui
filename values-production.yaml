@@ -1,0 +1,47 @@
+# Default values for kafka-connect-ui.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: landoop/kafka-connect-ui
+  tag: 0.9.7
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+connectCluster:
+  url: "http://kafka-cp-kafka-connect.messaging"
+  port: "8083"
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth-kafka-connect-ui
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required - Only SRE can provide that'          
+    kubernetes.io/ingress.class: nginx-internal
+  path: /
+  hosts:
+    - kafka-connect-ui.us.gympass.cloud 
+  tls: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
